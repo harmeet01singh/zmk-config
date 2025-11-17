@@ -1,11 +1,11 @@
 include:
   - board: seeeduino_xiao_ble
-    shield: cornex_left nice_view
-    # snippet: studio-rpc-usb-uart
-    # cmake-args: -DCONFIG_ZMK_STUDIO=y
+    shield: cornex_left nice_view rgbled_adapter
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
 
   - board: seeeduino_xiao_ble
-    shield: cornex_right nice_view
+    shield: cornex_right nice_view rgbled_adapter 
 
   - board: seeeduino_xiao_ble
     shield: settings_reset
