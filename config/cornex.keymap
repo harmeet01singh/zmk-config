@@ -112,6 +112,24 @@
             release-after-ms = <1000>;
             quick-release;
         };
+
+        braces: braces {
+            compatible = "zmk,behavior-mod-morph";
+            label = "BRACES";
+            bindings = <&kp LBRC>, <&kp RBRC>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        angle: angle {
+            compatible = "zmk,behavior-mod-morph";
+            label = "ANGLE";
+            bindings = <&kp LESS_THAN>, <&kp GT>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 
     combos {
@@ -177,10 +195,10 @@
             //              ╰─────┴─────┴─────╯ ╰─────┴────────┴─────╯
 
             bindings = <
-  &kp Q  &kp W  &kp F     &kp P  &kp B       &kp J      &kp L       &kp U      &kp Y    &kp SEMI
-  &kp A  &kp R  &kp S     &kp T  &kp G       &kp M      &kp N       &kp E      &kp I    &kp O
-  &kp Z  &kp X  &kp C     &kp D  &kp V       &kp K      &kp H       &kp COMMA  &kp DOT  &kp COLON
-                &sk LCTL  &mo 2  &sk LSFT    &kp SPACE  &lt 3 BSPC  &kp DEL
+  &kp Q  &kp W  &kp F      &kp P            &kp B      &kp J        &kp L        &kp U      &kp Y    &kp SEMI
+  &kp A  &kp R  &kp S      &kp T            &kp G      &kp M        &kp N        &kp E      &kp I    &kp O
+  &kp Z  &kp X  &kp C      &kp D            &kp V      &kp K        &kp H        &kp COMMA  &kp DOT  &kp COLON
+                &lt 5 ESC  &lt 1 BACKSPACE  &kp DEL    &lt 3 ENTER  &lt 2 SPACE  &lt 4 TAB
             >;
         };
 
@@ -209,10 +227,10 @@
             //              ╰─────┴─────┴─────╯ ╰─────┴─────┴─────╯
 
             bindings = <
-  &kp ASTERISK  &kp PIPE  &kp AMPS   &kp EXCL         &kp CARET    &none   &kp AT            &kp HASH           &kp PERCENT  &kp RET
-  &kp MINUS     &kp DQT   &kp EQUAL  &kp LEFT_BRACE   &kp DLLR     &none   &kp LESS_THAN     &kp LEFT_BRACKET   &kp SLASH    &lt 1 RET
-  &kp UNDER     &kp SQT   &kp PLUS   &kp RIGHT_BRACE  &kp GRAVE    &none   &kp GREATER_THAN  &kp RIGHT_BRACKET  &kp GT       &kp DEL
-                          &trans     &kp LPAR         &kp RPAR     &trans  &trans            &trans
+  &kp ASTERISK  &kp PIPE  &kp AMPS   &kp EXCL         &kp CARET    &none      &kp AT            &kp HASH           &kp PERCENT  &kp RET
+  &angle        &kp APOS  &kp EQUAL  &braces          &kp DLLR     &kp MINUS  &kp LESS_THAN     &kp LEFT_BRACKET   &kp SLASH    &lt 1 RET
+  &kp GT        &kp SQT   &kp PLUS   &kp RIGHT_BRACE  &kp GRAVE    &kp UNDER  &kp GREATER_THAN  &kp RIGHT_BRACKET  &kp BSLH     &kp DEL
+                          &trans     &kp LPAR         &kp RPAR     &trans     &trans            &trans
             >;
         };
 
@@ -254,6 +272,15 @@
   &kp LEFT_GUI  &kp LALT  &kp LCTRL  &kp LSHFT  &trans    &trans      &kp C_BRI_DN     &kp C_VOL_DN  &kp C_VOL_UP  &kp C_BRI_DN
   &trans        &trans    &trans     &trans     &trans    &trans      &bt BT_SEL 0     &bt BT_SEL 1  &trans        &trans
                           &trans     &trans     &trans    &kp C_STOP  &kp PAUSE_BREAK  &kp K_MUTE
+            >;
+        };
+
+        mouse {
+            bindings = <
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
+                  &trans  &trans  &trans    &trans  &trans  &trans
             >;
         };
     };
