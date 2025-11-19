@@ -245,10 +245,10 @@
             //              ╰─────┴─────┴─────╯ ╰─────┴────────┴─────╯
 
             bindings = <
-  &kp Q            &kp W            &kp F         &kp P                   &kp B      &kp J        &kp L              &kp U         &kp Y        &kp SEMI
-  &HML LEFT_WIN A  &HML LEFT_ALT R  &HML LCTRL S  &HMShiftL LEFT_SHIFT T  &kp G      &kp M        &HMShiftR RSHFT N  &HMR RCTRL E  &HMR RALT I  &HMR LMETA O
-  &kp Z            &kp X            &kp C         &kp D                   &kp V      &kp K        &kp H              &kp COMMA     &kp DOT      &kp COLON
-                                    &lt 5 ESC     &lt 1 BACKSPACE         &kp DEL    &lt 3 ENTER  &lt 2 SPACE        &lt 4 TAB
+  &kp Q            &kp W            &kp F         &kp P                   &kp B           &kp J        &kp L              &kp U         &kp Y        &kp SEMI
+  &HML LEFT_WIN A  &HML LEFT_ALT R  &HML LCTRL S  &HMShiftL LEFT_SHIFT T  &kp G           &kp M        &HMShiftR RSHFT N  &HMR RCTRL E  &HMR RALT I  &HMR LMETA O
+  &kp Z            &kp X            &kp C         &kp D                   &kp V           &kp K        &kp H              &kp COMMA     &kp DOT      &kp COLON
+                                    &lt 5 ESC     &lt 1 BACKSPACE         &lt 6 DELETE    &lt 3 ENTER  &lt 2 SPACE        &lt 4 TAB
             >;
         };
 
@@ -327,10 +327,10 @@
 
         mouse {
             bindings = <
-  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans
-                  &trans  &trans  &trans    &trans  &trans  &trans
+  &trans  &trans  &trans  &trans          &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &studio_unlock  &trans    &trans  &trans  &trans  &trans  &trans
+  &trans  &trans  &trans  &trans          &trans    &trans  &trans  &trans  &trans  &trans
+                  &trans  &trans          &trans    &trans  &trans  &trans
             >;
         };
     };
