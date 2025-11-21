@@ -140,7 +140,7 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
 
             bindings = <
   &kp ASTERISK  &kp PIPE  &kp AMPS   &kp EXCL         &kp CARET    &none      &kp AT            &kp HASH           &kp PERCENT  &kp RET
-  &angle        &kp APOS  &kp EQUAL  &braces          &kp DLLR     &kp MINUS  &kp LESS_THAN     &kp LEFT_BRACKET   &kp SLASH    &lt 1 RET
+  &trans        &kp APOS  &kp EQUAL  &trans          &kp DLLR     &kp MINUS  &kp LESS_THAN     &kp LEFT_BRACKET   &kp SLASH    &lt 1 RET
   &kp GT        &kp SQT   &kp PLUS   &kp RIGHT_BRACE  &kp GRAVE    &kp UNDER  &kp GREATER_THAN  &kp RIGHT_BRACKET  &kp BSLH     &kp DEL
                           &trans     &kp LPAR         &kp RPAR     &trans     &trans            &trans
             >;
