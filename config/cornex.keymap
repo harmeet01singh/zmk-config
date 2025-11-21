@@ -10,13 +10,6 @@
   #define _BT_SEL_KEYS_ &trans &trans &trans &trans &trans
 #endif
 
-#define DEF 0
-#define NAV 1
-#define FN 2
-#define NUM 3
-#define SYM 4
-#define MOUSE 5
-
 #define XXX &none
 #define ___ &trans
 
@@ -96,7 +89,7 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
     keymap {
         compatible = "zmk,keymap";
 
-        BASE {
+        colemak {
             //  ╭─────┬─────┬─────┬─────┬─────╮ ╭─────┬────────┬─────┬─────┬─────╮
             //  │  Q  │  W  │  F  │  P  │  G  │ │  J  │   L    │  U  │  Y  │  ;  │
             //  │  A  │  R  │  S  │  T  │  D  │ │  H  │   N    │  E  │  I  │  O  │
