@@ -178,6 +178,7 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
             >;
         };
 
+/*
         Media {
             bindings = <
   &trans        &trans    &trans     &trans     &trans    &trans      &trans           &trans        &trans        &trans
@@ -186,6 +187,7 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
                           &trans     &trans     &trans    &kp C_STOP  &kp PAUSE_BREAK  &kp K_MUTE
             >;
         };
+*/
 
         Mouse {
             bindings = <
