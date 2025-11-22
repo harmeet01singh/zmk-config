@@ -31,9 +31,7 @@
     quick-release;
 };
 
-&sl {
-    ignore-modifiers;
-};
+&sl { ignore-modifiers; };
 
 &lt {
     flavor = "balanced";
@@ -206,7 +204,13 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
   &trans  &trans  &trans  &trans          &trans    &trans     &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT
                   &trans  &trans          &trans    &mkp MCLK  &mkp LCLK       &mkp RCLK
 >;
-        };
+        };Media {
+         bindings = <
+  &trans        &trans        &trans        &trans            &trans        &trans  &trans  &trans  &trans  &trans
+  &kp C_BRI_DN  &kp K_VOL_UP  &kp K_VOL_DN  &kp C_BRI_UP      &trans        &trans  &trans  &trans  &trans  &trans
+  &trans        &trans        &trans        &trans            &trans        &trans  &trans  &trans  &trans  &trans
+                              &kp K_MUTE    &kp K_PLAY_PAUSE  &kp K_STOP    &trans  &trans  &trans
+>;};
         /*
         Media {
             bindings = <
