@@ -63,7 +63,58 @@ MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
 
 /* Mouse emulation */
 
-#include "mouse.dtsi"
+// Settings tuned for 3840 x 2160 display resolution
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 600 // 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 20  // 10
+
+#include <dt-bindings/zmk/pointing.h>
+#include <input/processors.dtsi>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+// Based on @caksoylar's config, defaults in comments
+&mmv {
+  acceleration-exponent = <1>;          // 1
+  time-to-max-speed-ms = <500>;         // 300
+  delay-ms = <0>;                       // 0
+};
+
+&msc {
+  acceleration-exponent = <0>;          // 0
+  time-to-max-speed-ms = <300>;         // 300
+  delay-ms = <0>;                       // 0
+};
+
+&mmv_input_listener {
+  warp {
+    layers = <NAV>;
+    input-processors = <&zip_xy_scaler 3 1>;
+  };
+  precision {
+    layers = <FN>;
+    input-processors = <&zip_xy_scaler 1 2>;
+  };
+};
+
+/ {
+  zip_scroll_scaler: zip_scroll_scaler {
+    compatible = "zmk,input-processor-scaler";
+    #input-processor-cells = <2>;
+    type = <INPUT_EV_REL>;
+    codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+    track-remainders;
+  };
+};
+
+&msc_input_listener {
+  warp {
+    layers = <NAV>;
+    input-processors = <&zip_scroll_scaler 2 1>;
+  };
+  precision {
+    layers = <FN>;
+    input-processors = <&zip_scroll_scaler 1 2>;
+  };
+};
 
 /* Nav cluster */
 
@@ -99,13 +150,6 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
         compatible = "zmk,keymap";
 
         Def {
-            //  ╭─────┬─────┬─────┬─────┬─────╮ ╭─────┬────────┬─────┬─────┬─────╮
-            //  │  Q  │  W  │  F  │  P  │  G  │ │  J  │   L    │  U  │  Y  │  ;  │
-            //  │  A  │  R  │  S  │  T  │  D  │ │  H  │   N    │  E  │  I  │  O  │
-            //  │  Z  │  X  │  C  │  V  │  B  │ │  K  │   M    │  ,  │  .  │  /  │
-            //  ╰─────┴─────┤ CTL │-SYM-│ SFT │ │ SPC │NUM/BKSP│ ALT ├─────┴─────╯
-            //              ╰─────┴─────┴─────╯ ╰─────┴────────┴─────╯
-
             bindings = <
   &kp Q            &kp W            &kp F         &kp P                   &kp B           &kp J        &kp L              &kp U         &kp Y        &kp SEMI
   &hml LEFT_WIN A  &hml LEFT_ALT R  &hml LCTRL S  &hml LEFT_SHIFT T  &kp G           &kp M        &hmr RSHFT N  &hmr RCTRL E  &hmr RALT I  &hmr LMETA O
@@ -115,13 +159,6 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
         };
 
         Nav {
-            // ╭─────┬─────┬─────┬─────┬─────╮ ╭─────┬─────┬─────┬─────┬─────╮
-            // │     │     │     │     │     │ │ DOW │RIGHT│     │     │     │
-            // │ SFT │ CTL │ GUI │ ALT │     │ │ LFT │ DWN │ U P │RIGHT│_NAV_│
-            // │     │     │     │     │     │ │ U P │PG_DN│PG_UP│ END │     │
-            // ╰─────┴─────┤     │_SYM_│ SFT │ │ SPC │     │ CMD ├─────┴─────╯
-            //             ╰─────┴─────┴─────╯ ╰─────┴─────┴─────╯
-
             bindings = <
   &none         &none     &none      &none      &none    &trans      &kp K_PASTE     &kp K_COPY      &kp K_CUT      &trans
   &kp LEFT_GUI  &kp LALT  &kp LCTRL  &kp LSHFT  &none    &kp CAPS    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW   &kp RIGHT_ARROW
@@ -131,13 +168,6 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
         };
 
         Sym {
-            // ╭──────┬─────┬─────┬─────┬─────╮ ╭─────┬─────┬─────┬─────┬─────╮
-            // │ ESC  │  \  │  %  │  $  │GAMIN│ │     │  ^  │  {  │  }  │ RET │
-            // │  *   │  (  │  )  │  :  │     │ │     │  '  │  [  │  ]  │-NAV-│
-            // │-FUNC-│  `  │  @  │  &  │ ALT │ │     │  #  │  <  │  >  │ DEL │
-            // ╰──────┴─────┤     │_SYM_│ SFT │ │ SPC │ ESC │     ├─────┴─────╯
-            //              ╰─────┴─────┴─────╯ ╰─────┴─────┴─────╯
-
             bindings = <
   &kp ASTERISK  &kp PIPE  &kp AMPS   &kp EXCL         &kp CARET    &none      &kp AT            &kp HASH           &kp PERCENT  &kp RET
   &trans        &kp APOS  &kp EQUAL  &trans          &kp DLLR     &kp MINUS  &kp LESS_THAN     &kp LEFT_BRACKET   &kp SLASH    &lt 1 RET
@@ -147,13 +177,6 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
         };
 
         Num {
-            // ╭─────┬─────┬─────┬─────┬─────╮ ╭─────┬─────┬─────┬─────┬─────╮
-            // │ ESC │  4  │  5  │  6  │     │ │     │  |  │  -  │  /  │     │
-            // │  '  │  1  │  2  │  3  │     │ │     │  "  │  _  │  =  │-NAV-│
-            // │  ~  │  7  │  8  │  9  │     │ │ GUI │  +  │  ?  │  !  │ DEL │
-            // ╰─────┴─────┤  .  │  0  │ SFT │ │ SPC │_NUM_│     ├─────┴─────╯
-            //             ╰─────┴─────┴─────╯ ╰─────┴─────┴─────╯
-
             bindings = <
   &kp KP_MINUS     &kp N4  &kp N5   &kp N6  &none            &none  &none      &none      &none     &none
   &kp KP_PLUS      &kp N1  &kp N2   &kp N3  &kp KP_DIVIDE    &none  &kp RSHFT  &kp RCTRL  &kp RALT  &kp RGUI
@@ -163,13 +186,6 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
         };
 
         Fn {
-            // ╭──────┬─────┬─────┬─────┬─────╮ ╭─────┬─────┬─────┬─────┬─────╮ 
-            // │      │ F 6 │ F 5 │ F 4 │ F10 │ │ BT0 │ BT1 │ USB │ BLE │     │ 
-            // │ CAPSL│ F 3 │ F 2 │ F 1 │ F11 │ │VMUTE│VOLDN│VOLUP│BRIDN│BRIUP│ 
-            // │_FUNC_│ F 9 │ F 8 │ F 7 │ F12 │ │     │     │SLEEP│-!!!-│     │ 
-            // ╰──────┴─────┤     │_SYM_│ SFT │ │ SPC │     │ CMD ├─────┴─────╯ 
-            //              ╰─────┴─────┴─────╯ ╰─────┴─────┴─────╯ 
-
             bindings = <
   &none  &kp F4  &kp F5  &kp F6  &kp F10    &none  &none  &none  &none  &none
   &none  &kp F1  &kp F2  &kp F3  &kp F11    &none  &none  &none  &none  &none
@@ -178,7 +194,6 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
             >;
         };
 
-/*
         Media {
             bindings = <
   &trans        &trans    &trans     &trans     &trans    &trans      &trans           &trans        &trans        &trans
@@ -187,14 +202,13 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
                           &trans     &trans     &trans    &kp C_STOP  &kp PAUSE_BREAK  &kp K_MUTE
             >;
         };
-*/
 
         Mouse {
             bindings = <
   &trans  &trans  &trans  &trans          &trans    &trans  &trans  &trans  &trans  &trans
-  &trans  &trans  &trans  &studio_unlock  &trans    &trans  U_MS_L  U_MS_D  U_MS_U  U_MS_R
-  &trans  &trans  &trans  &trans          &trans    &trans  U_WH_L  U_WH_D  U_WH_U  U_WH_R
-                  &trans  &trans          &trans    &mkp LCLK  &mkp LCLK  &mkp RCLK
+  &trans  &trans  &trans  &studio_unlock  &trans    &trans  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT
+  &trans  &trans  &trans  &trans          &trans    &trans  &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT
+                  &trans  &trans          &trans    &mkp MCLK  &mkp LCLK  &mkp RCLK
             >;
         };
     };
