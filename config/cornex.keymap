@@ -199,17 +199,17 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
 
         Mouse {
             bindings = <
-  &trans  &trans  &trans  &trans          &trans    &trans     &trans          &trans          &trans        &trans
-  &trans  &trans  &trans  &studio_unlock  &trans    &trans     &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT
-  &trans  &trans  &trans  &trans          &trans    &trans     &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT
-                  &trans  &trans          &trans    &mkp MCLK  &mkp LCLK       &mkp RCLK
+  &trans    &trans    &trans     &trans     &trans    &trans     &trans          &trans          &trans        &trans
+  &kp LGUI  &kp LALT  &kp LCTRL  &kp LSHFT  &trans    &trans     &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT
+  &trans    &trans    &trans     &trans     &trans    &trans     &msc SCRL_LEFT  &msc SCRL_DOWN  &msc SCRL_UP  &msc SCRL_RIGHT
+                      &trans     &trans     &trans    &mkp MCLK  &mkp LCLK       &mkp RCLK
 >;
         };Media {
          bindings = <
-  &trans        &trans        &trans        &trans            &trans        &trans  &trans  &trans  &trans  &trans
-  &kp C_BRI_DN  &kp K_VOL_UP  &kp K_VOL_DN  &kp C_BRI_UP      &trans        &trans  &trans  &trans  &trans  &trans
-  &trans        &trans        &trans        &trans            &trans        &trans  &trans  &trans  &trans  &trans
-                              &kp K_MUTE    &kp K_PLAY_PAUSE  &kp K_STOP    &trans  &trans  &trans
+  &trans        &trans        &trans        &trans            &trans            &trans  &trans  &trans  &trans  &trans
+  &kp C_BRI_DN  &kp K_VOL_UP  &kp K_VOL_DN  &kp C_BRI_UP      &studio_unlock    &trans  &trans  &trans  &trans  &trans
+  &trans        &trans        &trans        &trans            &trans            &trans  &trans  &trans  &trans  &trans
+                              &kp K_MUTE    &kp K_PLAY_PAUSE  &kp K_STOP        &trans  &trans  &trans
 >;};
         /*
         Media {
