@@ -194,15 +194,6 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
             >;
         };
 
-        Media {
-            bindings = <
-  &trans        &trans    &trans     &trans     &trans    &trans      &trans           &trans        &trans        &trans
-  &kp LEFT_GUI  &kp LALT  &kp LCTRL  &kp LSHFT  &trans    &trans      &kp C_BRI_DN     &kp C_VOL_DN  &kp C_VOL_UP  &kp C_BRI_DN
-  &trans        &trans    &trans     &trans     &trans    &trans      &bt BT_SEL 0     &bt BT_SEL 1  &trans        &trans
-                          &trans     &trans     &trans    &kp C_STOP  &kp PAUSE_BREAK  &kp K_MUTE
-            >;
-        };
-
         Mouse {
             bindings = <
   &trans  &trans  &trans  &trans          &trans    &trans  &trans  &trans  &trans  &trans
@@ -211,5 +202,15 @@ MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
                   &trans  &trans          &trans    &mkp MCLK  &mkp LCLK  &mkp RCLK
             >;
         };
+        /*
+        Media {
+            bindings = <
+  &trans        &trans    &trans     &trans     &trans    &trans      &trans           &trans        &trans        &trans
+  &kp LEFT_GUI  &kp LALT  &kp LCTRL  &kp LSHFT  &trans    &trans      &kp C_BRI_DN     &kp C_VOL_DN  &kp C_VOL_UP  &kp C_BRI_DN
+  &trans        &trans    &trans     &trans     &trans    &trans      &bt BT_SEL 0     &bt BT_SEL 1  &trans        &trans
+                          &trans     &trans     &trans    &kp C_STOP  &kp PAUSE_BREAK  &kp K_MUTE
+            >;
+        };
+        */
     };
 };
